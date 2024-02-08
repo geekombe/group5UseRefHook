@@ -11,8 +11,13 @@ function InputForm(){
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 
     function handleChange(event){
-        const details = {[event.target.name] : event.target.value }
-        setSignUpDetails(details)
+        const name = event.target.name
+        const value = event.target.value 
+
+        setSignUpDetails({
+            ...signUpDetails,
+            [name]: value
+        })
         console.log(signUpDetails)
         const passwordInputRef = passwordRef.current;
 
