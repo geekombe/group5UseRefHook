@@ -13,12 +13,13 @@ function InputForm(){
     function handleChange(event){
         const details = {[event.target.name] : event.target.value }
         setSignUpDetails(details)
+        console.log(signUpDetails)
         const passwordInputRef = passwordRef.current;
 
-        if(signUpDetails !== passwordRegex){
-            passwordInputRef.style.border = "5 px solid red"
-        } else {
+        if(passwordRegex.test(signUpDetails)){
             passwordInputRef.style.border = "5 px solid green"
+        } else {
+            passwordInputRef.style.border = "5 px solid red"
         }
         
     }
