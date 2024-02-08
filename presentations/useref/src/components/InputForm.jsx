@@ -15,10 +15,10 @@ function InputForm(){
         setSignUpDetails(details)
         const passwordInputRef = passwordRef.current;
 
-        if(signUpDetails === passwordRegex){
-            passwordInputRef.style.border = "5 px solid green"
-        } else {
+        if(signUpDetails !== passwordRegex){
             passwordInputRef.style.border = "5 px solid red"
+        } else {
+            passwordInputRef.style.border = "5 px solid green"
         }
         
     }
