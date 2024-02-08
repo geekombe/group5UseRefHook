@@ -1,48 +1,48 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 function InputForm(){
     const [ signUpDetails, setSignUpDetails ] = useState({
         name: "",
         password: ""
-    })
+    });
 
     const passwordRef = useRef();
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 
+    useEffect(() => {
+        const passwordInputRef = passwordRef.current;
+
+        if(passwordRegex.test(signUpDetails.password)){
+            passwordInputRef.style.border = "5px solid green";
+        } else {
+            passwordInputRef.style.border = "5px solid red";
+        }
+    }, [signUpDetails.password]);
+
     function handleChange(event){
-        const name = event.target.name
-        const value = event.target.value 
+        const { name, value } = event.target;
 
         setSignUpDetails({
             ...signUpDetails,
             [name]: value
-        })
-        console.log(signUpDetails)
-        const passwordInputRef = passwordRef.current;
-
-        if(passwordRegex.test(signUpDetails)){
-            passwordInputRef.style.border = "5 px solid green"
-        } else {
-            passwordInputRef.style.border = "5 px solid red"
-        }
-        
+        });
     }
 
     return (
         <div>
             <h1>Input Form</h1>
             <form>
-                <label for="name">Name: </label>
-                <input type="text" id="name" name="name" value={signUpDetails.name}/>
+                <label htmlFor="name">Name: </label>
+                <input type="text" id="name" name="name" value={signUpDetails.name} onChange={handleChange} />
                 <br/>
-                <label for="password">Password: </label>
-                <input ref={passwordRef} type="text" id="password" name="password" onChange={handleChange} value={signUpDetails.password}/>
+                <label htmlFor="password">Password: </label>
+                <input ref={passwordRef} type="password" id="password" name="password" onChange={handleChange} value={signUpDetails.password} />
                 <br/>
                 <button>Sign Up</button>
             </form>
         </div>
-    )
+    );
 }
 
 export default InputForm;
