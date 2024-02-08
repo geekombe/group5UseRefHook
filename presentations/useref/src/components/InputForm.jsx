@@ -37,8 +37,15 @@ function InputForm(){
                 <input type="text" id="name" name="name" value={signUpDetails.name} onChange={handleChange} />
                 <br/>
                 <label htmlFor="password">Password: </label>
-                <input ref={passwordRef} type="password" id="password" name="password" onChange={handleChange} value={signUpDetails.password} />
+                <input ref={passwordRef} type="text" id="password" name="password" onChange={handleChange} value={signUpDetails.password} />
                 <br/>
+                <ul>
+                    <li>Must contain at least one uppercase character</li>
+                    <li>Must contain at least one lowercase character</li>
+                    <li>Must contain at least one special character</li>
+                    <li>Must contain at least one digit</li>
+                    <li>Must contain at least 8 characters</li>
+                </ul>
                 <button>Sign Up</button>
             </form>
         </div>
